@@ -55,4 +55,18 @@ describe Parks do
 
         expect(@yellowstone.num_of_visitors).to eq(5)
     end
+
+    it 'can charge for admission' do
+        expect(@yellowstone.total_revenue).to eq(0)
+
+        @yellowstone.vehicle_visits(@honda)
+        @yellowstone.charge_admission
+
+        expect(@yellowstone.total_revenue).to eq(20)
+
+        @yellowstone.vehicle_visits(@toyota)
+        @yellowstone.charge_admission
+
+        expect(@yellowstone.total_revenue).to eq(40)
+    end
 end
