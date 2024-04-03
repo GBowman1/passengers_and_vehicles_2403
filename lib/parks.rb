@@ -69,4 +69,6 @@ class Parks
 
     #list will always need be alphabetized so it feels safe to sort! the array
     #we dont care about an unsorted array
+
+    #could have not used the instance variables and just returned the array sorted 
 end
