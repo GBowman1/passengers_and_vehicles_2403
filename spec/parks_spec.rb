@@ -9,6 +9,7 @@ describe Parks do
 
         @honda = Vehicle.new("2001", "Honda", "Civic")
         @toyota = Vehicle.new("2014", "Toyota", "Tacoma")
+        @ford = Vehicle.new("2018", "Ford", "F-150")
 
         @charlie = Passenger.new({"name" => "Charlie", "age" => 18})
         @jude = Passenger.new({"name" => "Jude", "age" => 20})
@@ -17,11 +18,18 @@ describe Parks do
         @john = Passenger.new({"name" => "John", "age" => 26})
         @garrett = Passenger.new({"name" => "Garrett", "age" => 25})
 
+        @mikey = Passenger.new({"name" => "Mikey", "age" => 8})
+        @frankie = Passenger.new({"name" => "Frankie", "age" => 7})
+        @bobby = Passenger.new({"name" => "Bobby", "age" => 32})
+
         @honda.add_passenger(@charlie)
         @honda.add_passenger(@jude)
         @honda.add_passenger(@taylor)
         @toyota.add_passenger(@john)
         @toyota.add_passenger(@garrett)
+        @ford.add_passenger(@mikey)
+        @ford.add_passenger(@frankie)
+        @ford.add_passenger(@bobby)
     end
 
     it 'exists' do
@@ -68,5 +76,33 @@ describe Parks do
         @yellowstone.charge_admission
 
         expect(@yellowstone.total_revenue).to eq(40)
+    end
+
+    it 'can list all attendees alphabetically' do
+        @yellowstone.vehicle_visits(@honda)
+        @yellowstone.vehicle_visits(@toyota)
+
+        @yellowstone.list_all_attendees
+
+        expect(@yellowstone.total_attendees).to eq(["Charlie", "Garrett", "John", "Jude", "Taylor"])
+    end
+
+    it 'can list all adults alphabetically' do
+        @yellowstone.vehicle_visits(@honda)
+        @yellowstone.vehicle_visits(@toyota)
+
+        @yellowstone.list_all_adults
+
+        expect(@yellowstone.total_adults).to eq(["Charlie", "Garrett", "John", "Jude"])
+    end
+
+    it 'can list all children alphabetically' do
+        @yellowstone.vehicle_visits(@honda)
+        @yellowstone.vehicle_visits(@toyota)
+        @yellowstone.vehicle_visits(@ford)
+
+        @yellowstone.list_all_children
+
+        expect(@yellowstone.total_children).to eq(["Frankie", "Mikey", "Taylor"])
     end
 end
