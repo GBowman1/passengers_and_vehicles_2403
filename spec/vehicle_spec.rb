@@ -25,4 +25,14 @@ describe Vehicle do
 
         expect(vehicle.year).to eq('2001')
     end
+
+    it 'is speeding?' do
+        vehicle = Vehicle.new("2001", "Honda", "Civic")
+
+        expect(vehicle.speeding?).to eq(false)
+
+        vehicle.speed
+
+        expect(vehicle.speeding?).to eq(true)
+    end
 end
