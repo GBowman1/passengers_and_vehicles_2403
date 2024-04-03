@@ -46,4 +46,13 @@ describe Parks do
 
         expect(@yellowstone.vehicles_visting).to eq([@honda, @toyota])
     end
+
+    it 'can check how many passengers vist the park' do
+        expect(@yellowstone.num_of_visitors).to eq(0)
+
+        @yellowstone.vehicle_visits(@honda)
+        @yellowstone.vehicle_visits(@toyota)
+
+        expect(@yellowstone.num_of_visitors).to eq(5)
+    end
 end
