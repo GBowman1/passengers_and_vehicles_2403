@@ -37,4 +37,13 @@ describe Parks do
         expect(@yellowstone.admission_price).to eq(10)
         expect(@grand_canyon.admission_price).to eq(12)
     end
+
+    it 'has vehicles' do
+        expect(@yellowstone.vehicles_visting).to eq([])
+
+        @yellowstone.vehicle_visits(@honda)
+        @yellowstone.vehicle_visits(@toyota)
+
+        expect(@yellowstone.vehicles_visting).to eq([@honda, @toyota])
+    end
 end
